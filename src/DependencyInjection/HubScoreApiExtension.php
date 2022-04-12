@@ -18,7 +18,7 @@ class HubScoreApiExtension extends ConfigurableExtension
         $config = $this->processConfiguration($configuration, $configs);
         
         $definition = $container->getDefinition('twitter');
-        $definition->replaceArgument(0, $config['twitter']['client_id']);
-        $definition->replaceArgument(1, $config['twitter']['client_secret']);
+        $definition->replaceArgument(0, $config['client_id']);
+        $definition->replaceArgument(1, $config['client_secret']);
     }
 }
