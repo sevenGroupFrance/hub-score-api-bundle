@@ -1,1 +1,1 @@
-# sevengroupfrance/sulu-hub-score-api-bundle
+# sevengroupfrance/hub-score-api-bundle
