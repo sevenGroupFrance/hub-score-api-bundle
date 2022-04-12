@@ -1,6 +1,6 @@
 <?php
 
-namespace SevenGroupFrance\SuluHubScoreApiBundle;
+namespace SevenGroupFrance\HubScoreApiBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
