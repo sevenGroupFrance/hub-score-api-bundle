@@ -5,7 +5,7 @@
         https://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="sevengroup.hubscoreapi.twitter_client" class="SevenGroupFrance\HubScoreApiBundle\TwitterClient">
+        <service id="hub_score_api" class="SevenGroupFrance\HubScoreApiBundle\TwitterClient">
             <argument></argument> <!-- will be filled in with client_id dynamically -->
             <argument></argument> <!-- will be filled in with client_secret dynamically -->
         </service>
