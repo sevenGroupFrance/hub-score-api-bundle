@@ -1,5 +1,5 @@
 <?php
-namespace SevenGroupFrance\SuluHubScoreApiBundle\DependencyInjection;
+namespace SevenGroupFrance\HubScoreApiBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
