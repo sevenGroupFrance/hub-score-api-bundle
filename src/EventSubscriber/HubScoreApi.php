@@ -1,6 +1,6 @@
 <?php
 
-namespace SevenGroupFrance\SuluHubScoreApiBundle\EventSubscriber;
+namespace SevenGroupFrance\HubScoreApiBundle\EventSubscriber;
 
 use Sulu\Bundle\FormBundle\Entity\Dynamic;
 use Sulu\Bundle\FormBundle\Event\FormSavePostEvent;
