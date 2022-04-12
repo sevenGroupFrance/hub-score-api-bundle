@@ -1,5 +1,5 @@
 {
-    "name": "sevengroupfrance/sulu-hub-score-api-bundle",
+    "name": "sevengroupfrance/hub-score-api-bundle",
     "license": "MIT",
     "type": "library",
     "authors": [
@@ -14,20 +14,13 @@
     ],
     "autoload": {
         "psr-4": {
-            "SevenGroupFrance\\SuluHubScoreApiBundle\\": "src"
+            "SevenGroupFrance\\HubScoreApiBundle\\": "src"
         }
     },
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/sevenGroupFrance/sulu-hub-score-api-bundle/"
-        },
-        {
-            "type": "path",
-            "url": "../../../assets/admin/node_modules",
-            "options": {
-                "symlink": true
-            }
+            "url": "https://github.com/sevenGroupFrance/hub-score-api-bundle/"
         }
     ]
 }
