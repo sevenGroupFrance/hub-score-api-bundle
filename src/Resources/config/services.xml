@@ -5,9 +5,12 @@
         https://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="twitter" class="SevenGroupFrance\HubScoreApiBundle\TwitterClient">
-            <argument></argument> <!-- will be filled in with client_id dynamically -->
-            <argument></argument> <!-- will be filled in with client_secret dynamically -->
+        <service id="seven_group_france.hub_score_api.api_call" class="SevenGroupFrance\HubScoreApiBundle\ApiCall">
+            <argument></argument>
+            <argument></argument>
+        </service>
+        <service id="SevenGroupFrance\HubScoreApiBundle\EventSubscriber\hubScoreApi">
+            <tag name="doctrine.event_subscriber" priority="500" connection="default"/>
         </service>
     </services>
 </container>
