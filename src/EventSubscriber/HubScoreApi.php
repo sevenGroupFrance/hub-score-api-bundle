@@ -2,6 +2,8 @@
 
 namespace SevenGroupFrance\HubScoreApiBundle\EventSubscriber;
 
+
+use SevenGroupFrance\HubScoreApiBundle\EventSubscriber\HubScoreApiCall;
 use Doctrine\Common\EventSubscriber;
 use Sulu\Bundle\FormBundle\Entity\Dynamic;
 use Sulu\Bundle\FormBundle\Event\FormSavePostEvent;
@@ -9,9 +11,13 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class HubScoreApi implements EventSubscriber
 {
+    private $id;
+    private $pswd;
     private $client;
-    public function __construct(HttpClientInterface $client)
+    public function __construct($id = '', $pswd = '', HttpClientInterface $client)
     {
+        $this->id = $id;
+        $this->pswd = $pswd;
         $this->client = $client;
     }
 
@@ -32,17 +38,8 @@ class HubScoreApi implements EventSubscriber
 
         $form = $dynamic->getForm()->serializeForLocale($dynamic->getLocale(), $dynamic);
         if ($form) {
-            $response = $this->client->request(
-                'POST',
-                'https://api.hub-score.com/login_check',
-                [
-                    'json' => [
-                        'Username' => 'benjamin_test',
-                        'Password' => 'benjamin_test'
-                    ]
-                ]
-            );
-
+            $apiCall = new HubScoreApiCall();
+            $response = $apiCall->login($this->id, $this->pswd, $this->client);
             $statusCode = $response->getStatusCode();
             $content = $response->getContent();
             $content = $response->toArray();
