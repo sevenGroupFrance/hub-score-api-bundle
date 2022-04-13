@@ -5,11 +5,12 @@
         https://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="seven_group_france.hub_score_api.api_call" class="SevenGroupFrance\HubScoreApiBundle\ApiCall">
+        <defaults autowire="true" autoconfigure="true"/>
+        <service id="seven_group_france.hub_score_api.api_call" class="SevenGroupFrance\HubScoreApiBundle\ApiCall" autowire="true">
             <argument></argument>
             <argument></argument>
         </service>
-        <service id="SevenGroupFrance\HubScoreApiBundle\EventSubscriber\HubScoreApi">
+        <service id="SevenGroupFrance\HubScoreApiBundle\EventSubscriber\HubScoreApi" autowire="true">
             <tag name="doctrine.event_subscriber" priority="500" connection="default"/>
         </service>
     </services>
