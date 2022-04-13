@@ -9,7 +9,7 @@
             <argument></argument>
             <argument></argument>
         </service>
-        <service id="SevenGroupFrance\HubScoreApiBundle\EventSubscriber\hubScoreApi">
+        <service id="SevenGroupFrance\HubScoreApiBundle\EventSubscriber\HubScoreApi">
             <tag name="doctrine.event_subscriber" priority="500" connection="default"/>
         </service>
     </services>
