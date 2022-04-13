@@ -2,13 +2,12 @@
 
 namespace SevenGroupFrance\HubScoreApiBundle\EventSubscriber;
 
-use Doctrine\Common\EventSubscriber;
 use Sulu\Bundle\FormBundle\Entity\Dynamic;
 use Sulu\Bundle\FormBundle\Event\FormSavePostEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-class HubScoreApi implements EventSubscriberInterface, EventSubscriber
+class HubScoreApi implements EventSubscriberInterface
 {
     private $client;
     public function __construct(HttpClientInterface $client)
