@@ -17,7 +17,7 @@ class HubScoreApiExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $definition = $container->getDefinition('seven_group_france.hub_score_api.api_call');
+        $definition = $container->getDefinition('seven_group_france.hub_score_api.event_subscriber.hub_score_api');
         $definition->replaceArgument(0, $config['login']['id']);
         $definition->replaceArgument(1, $config['login']['pswd']);
     }
