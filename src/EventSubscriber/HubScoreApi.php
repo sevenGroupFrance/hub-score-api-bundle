@@ -14,7 +14,7 @@ class HubScoreApi implements EventSubscriber
     private $id;
     private $pswd;
     private $client;
-    public function __construct($id = '', $pswd = '', HttpClientInterface $client)
+    public function __construct($id, $pswd, HttpClientInterface $client)
     {
         $this->id = $id;
         $this->pswd = $pswd;
