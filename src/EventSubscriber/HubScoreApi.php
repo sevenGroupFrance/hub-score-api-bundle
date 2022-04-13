@@ -9,7 +9,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class HubScoreApi implements EventSubscriberInterface
 {
-    private $client = new HttpClientInterface();
+    private $client;
     public function __construct(HttpClientInterface $client)
     {
         $this->client = $client;
