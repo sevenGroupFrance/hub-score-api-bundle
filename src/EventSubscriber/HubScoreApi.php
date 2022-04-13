@@ -7,7 +7,7 @@ use Sulu\Bundle\FormBundle\Event\FormSavePostEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
-class hubScoreApi implements EventSubscriberInterface
+class HubScoreApi implements EventSubscriberInterface
 {
     private $client;
     public function __construct(HttpClientInterface $client)
