@@ -16,7 +16,7 @@ class HubScoreApi implements EventSubscriberInterface, EventSubscriber
         $this->client = $client;
     }
 
-    public static function getSubscribedEvents(): array
+    public function getSubscribedEvents(): array
     {
         return [
             FormSavePostEvent::NAME => "hubAPI"
