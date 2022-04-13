@@ -5,10 +5,6 @@
 
     <services>
         <defaults autowire="true" autoconfigure="true"/>
-        <service id="seven_group_france.hub_score_api.event_subscriber.hub_score_api_call" class="SevenGroupFrance\HubScoreApiBundle\EventSubscriber\HubScoreApiCall" autowire="true">
-            <argument></argument>
-            <argument></argument>
-        </service>
 
         <service id="seven_group_france.hub_score_api.event_subscriber.hub_score_api" class="SevenGroupFrance\HubScoreApiBundle\EventSubscriber\HubScoreApi" autowire="true">
             <argument></argument>
