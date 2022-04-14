@@ -19,7 +19,7 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('id')
                             ->defaultValue('')
                         ->end()
-                        ->scalarNode('pswd')
+                        ->scalarNode('pwd')
                             ->defaultValue('')
                         ->end()
                     ->end()
