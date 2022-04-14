@@ -12,12 +12,12 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 class HubScoreApi implements EventSubscriberInterface
 {
     private $id;
-    private $pswd;
+    private $pwd;
     private $client;
-    public function __construct($id, $pswd, HttpClientInterface $client)
+    public function __construct($id, $pwd, HttpClientInterface $client)
     {
         $this->id = $id;
-        $this->pswd = $pswd;
+        $this->pwd = $pwd;
         $this->client = $client;
     }
 
@@ -39,7 +39,7 @@ class HubScoreApi implements EventSubscriberInterface
         $form = $dynamic->getForm()->serializeForLocale($dynamic->getLocale(), $dynamic);
         if ($form) {
             $apiCall = new HubScoreApiCall();
-            $response = $apiCall->login($this->id, $this->pswd, $this->client);
+            $response = $apiCall->login($this->id, $this->pwd, $this->client);
             $statusCode = $response->getStatusCode();
             $content = $response->getContent();
             $content = $response->toArray();
