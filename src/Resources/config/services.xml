@@ -9,7 +9,7 @@
         <service id="seven_group_france.hub_score_api.event_subscriber.hub_score_api" class="SevenGroupFrance\HubScoreApiBundle\EventSubscriber\HubScoreApi" autowire="true">
             <argument>%hub_score_api.login.id%</argument>
             <argument>%hub_score_api.login.pswd%</argument>
-            <tag name="doctrine.event_subscriber" priority="500" connection="default"/>
+            <tag name="kernel.event_subscriber" />
         </service>
     </services>
 </container>
