@@ -15,7 +15,7 @@ class HubScoreApiExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $container->setParameter('hub_score_api.login.id', $config['login']['id']);
-        $container->setParameter('hub_score_api.login.pswd', $config['login']['pswd']);
+        $container->setParameter('hub_score_api.login.pwd', $config['login']['pwd']);
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.xml');
