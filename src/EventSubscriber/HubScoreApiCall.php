@@ -4,7 +4,7 @@ namespace SevenGroupFrance\HubScoreApiBundle\EventSubscriber;
 
 class HubScoreApiCall
 {
-    public function login($id, $pswd, $client)
+    public function login($id, $pwd, $client)
     {
         $response = $client->request(
             'POST',
@@ -12,7 +12,7 @@ class HubScoreApiCall
             [
                 'json' => [
                     'Username' => $id,
-                    'Password' => $pswd
+                    'Password' => $pwd
                 ]
             ]
         );
