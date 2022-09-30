@@ -6,14 +6,16 @@ class HubScoreApi
 {
     private $id;
     private $pwd;
+    private $forms;
     private $client;
     private $response;
     private $login_token;
 
-    public function __construct($id, $pwd, $client)
+    public function __construct($id, $pwd, $forms, $client)
     {
         $this->id = $id;
         $this->pwd = $pwd;
+        $this->forms = $forms;
         $this->client = $client;
         $this->response = $this->login($this->id, $this->pwd, $this->client);
         $this->login_token = $this->response->toArray()['token'];
@@ -37,15 +39,35 @@ class HubScoreApi
 
     public function sendForm($client, $form)
     {
-        $email = $form['fields'][1]['value'];
-        $firstName = $form['fields'][2]['value'];
-        $lastName = $form['fields'][3]['value'];
-        // $phone = $form['fields'][4]['value'];
-        // $function = $form['fields'][5]['value'];
-        // $company = $form['fields'][6]['value'];
-        // $select = $form['fields'][7]['value'];
-        $textarea = $form['fields'][8]['value'];
-
+        $config = [];
+        $fields = [];
+        $userInfos = [];
+        $email = '';
+        $count = 1;
+        foreach ($this->forms as $key => $value) {
+            // if the key in the yaml config file is equal to the validated form title
+            if ($key === $form['title']) {
+                // save the form config and fields from the yaml config file in 2 arrays
+                $config = $value['config'];
+                $fields = $value['fields'];
+                foreach ($form['fields'] as $formField) {
+                    // if form has undesirable fields, we don't count them
+                    if ($formField['key'] === "freeText") {
+                        continue;
+                    }
+                    // if form has an email, we save it in a $email variable
+                    if ($formField['key'] === "email") {
+                        $email = $formField['value'];
+                        continue;
+                    }
+                    // else, we save the other data in an associative array, $fieldDefinedInYamlConfig => $valueOfFieldInForm
+                    $userInfos[$fields[$count]] = $formField['value'];
+                    $count++;
+                }
+                break;
+            }
+        }
+        dump($userInfos);
         $client->request(
             'POST',
             'https://api.hub-score.com/v1/sends/mails',
@@ -57,21 +79,11 @@ class HubScoreApi
                 "json" =>
                 [
                     "userMail" => $email,
-                    "campagnId" => 356,
-                    "databaseId" => 14,
-                    "userInfos" =>
-                    [
-                        "nom" => $lastName,
-                        "prnom" => $firstName,
-                        "test" => $textarea
-                    ],
+                    "campagnId" => $config['campaign_id'],
+                    "databaseId" => $config['database_id'],
+                    "userInfos" => $userInfos,
                     "overwriteUserInfos" => 1,
-                    "html" => "string",
-                    "attachementName1" => "string",
-                    "attachement1" => "string",
-                    "attachementName2" => "string",
-                    "attachement2" => "string",
-                    "alwaysInsert" => "string"
+                    "alwaysInsert" => 0
                 ]
             ]
         );
