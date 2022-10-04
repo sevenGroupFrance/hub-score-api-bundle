@@ -37,10 +37,11 @@ class HubScoreApi
         return $response;
     }
 
-    public function sendForm($client, $form)
+    public function sendForm($client, $form): array
     {
         $config = [];
         $fields = [];
+        $messages = [];
         $userInfos = [];
         $email = '';
         $count = 1;
@@ -64,11 +65,14 @@ class HubScoreApi
                     $userInfos[$fields[$count]] = $formField['value'];
                     $count++;
                 }
+                if (isset($value['messages'])) {
+                    $messages = $value['messages'];
+                }
                 break;
             }
         }
-        dump($userInfos);
-        $client->request(
+
+        $response = $client->request(
             'POST',
             'https://api.hub-score.com/v1/sends/mails',
             [
@@ -82,11 +86,15 @@ class HubScoreApi
                     "campagnId" => $config['campaign_id'],
                     "databaseId" => $config['database_id'],
                     "userInfos" => $userInfos,
-                    "overwriteUserInfos" => 1,
-                    "alwaysInsert" => 0
+                    "overwriteUserInfos" => 1
                 ]
             ]
         );
+
+        return [
+            "reponse" => $response,
+            "messages" => $messages
+        ];
     }
 
     public function getResponse()
