@@ -4,11 +4,29 @@ namespace SevenGroupFrance\HubScoreApiBundle\EventSubscriber;
 
 class HubScoreApi
 {
+    /**
+     * @var string $id
+     */
     private $id;
+    /**
+     * @var string $pwd
+     */
     private $pwd;
+    /**
+     * @var array $forms
+     */
     private $forms;
+    /**
+     * @var object $client
+     */
     private $client;
+    /**
+     * @var object $response
+     */
     private $response;
+    /**
+     * @var string $login_token
+     */
     private $login_token;
 
     public function __construct($id, $pwd, $forms, $client)
@@ -21,7 +39,17 @@ class HubScoreApi
         $this->login_token = $this->response->toArray()['token'];
     }
 
-    private function login($id, $pwd, $client)
+    /**
+     * private function login.
+     * Sends an API call to https://api.hub-score.com/login_check and returns the response.
+     * 
+     * @param string $id
+     * @param string $pwd
+     * @param object $client
+     * 
+     * @return object
+     */
+    private function login(string $id, string $pwd, object $client): object
     {
         $response = $client->request(
             'POST',
@@ -37,6 +65,16 @@ class HubScoreApi
         return $response;
     }
 
+    /**
+     * public function sendForm
+     * Gets the form and the form configuration from the yaml file,
+     * then does an API call to https://api.hub-score.com/v1/sends/mails.
+     * 
+     * @param object $client
+     * @param array $form
+     * 
+     * @return array
+     */
     public function sendForm($client, $form): array
     {
         $config = [];
@@ -97,11 +135,22 @@ class HubScoreApi
         ];
     }
 
-    public function getResponse()
+    /**
+     * public function getResponse
+     * 
+     * @return object
+     */
+    public function getResponse(): object
     {
         return $this->response;
     }
-    public function getLoginToken()
+
+    /**
+     * public function getLoginToken
+     * 
+     * @return string
+     */
+    public function getLoginToken(): string
     {
         return $this->login_token;
     }
