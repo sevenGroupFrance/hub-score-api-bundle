@@ -84,8 +84,10 @@ class HubScoreApi
         $email = '';
         $count = 1;
         foreach ($this->forms as $key => $value) {
+            $str1 = strtolower(preg_replace("/[^a-z0-9]+/i", "", $form['title']));
+            $str2 = strtolower(preg_replace("/[^a-z0-9]+/i", "", $key));
             // if the key in the yaml config file is equal to the validated form title
-            if ($key === $form['title']) {
+            if ($str1 === $str2) {
                 // save the form config and fields from the yaml config file in 2 arrays
                 $config = $value['config'];
                 $fields = $value['fields'];
